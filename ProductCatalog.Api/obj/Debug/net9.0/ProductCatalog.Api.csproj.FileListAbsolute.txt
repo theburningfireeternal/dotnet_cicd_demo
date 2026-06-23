@@ -30,3 +30,5 @@ D:\CI_CD_Demo\ProductCatalog.Api\obj\Debug\net9.0\refint\ProductCatalog.Api.dll
 D:\CI_CD_Demo\ProductCatalog.Api\obj\Debug\net9.0\ProductCatalog.Api.pdb
 D:\CI_CD_Demo\ProductCatalog.Api\obj\Debug\net9.0\ProductCatalog.Api.genruntimeconfig.cache
 D:\CI_CD_Demo\ProductCatalog.Api\obj\Debug\net9.0\ref\ProductCatalog.Api.dll
+D:\CI_CD_Demo\ProductCatalog.Api\obj\Debug\net9.0\ProductCatalog.Api.sourcelink.json
+D:\CI_CD_Demo\ProductCatalog.Api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

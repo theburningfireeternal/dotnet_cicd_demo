@@ -444,3 +444,4 @@ D:\CI_CD_Demo\ProductCatalog.Api.Tests\obj\Debug\net9.0\refint\ProductCatalog.Ap
 D:\CI_CD_Demo\ProductCatalog.Api.Tests\obj\Debug\net9.0\ProductCatalog.Api.Tests.pdb
 D:\CI_CD_Demo\ProductCatalog.Api.Tests\obj\Debug\net9.0\ProductCatalog.Api.Tests.genruntimeconfig.cache
 D:\CI_CD_Demo\ProductCatalog.Api.Tests\obj\Debug\net9.0\ref\ProductCatalog.Api.Tests.dll
+D:\CI_CD_Demo\ProductCatalog.Api.Tests\obj\Debug\net9.0\ProductCatalog.Api.Tests.sourcelink.json
