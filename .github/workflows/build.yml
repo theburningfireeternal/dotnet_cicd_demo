@@ -74,6 +74,6 @@ jobs:
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
-          app-name: YOUR_APP_NAME
+          app-name: AzureCloudDemo
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
           images: ghcr.io/${{ github.repository }}/product-api:latest
