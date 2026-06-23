@@ -1,4 +1,4 @@
-name: Product API CI
+name: Product API CI/CD
 
 on:
   push:
@@ -6,12 +6,11 @@ on:
       - main
 
 jobs:
-  build:
+  build-test:
 
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v4
 
       - uses: actions/setup-dotnet@v4
@@ -20,6 +19,45 @@ jobs:
 
       - run: dotnet restore
 
-      - run: dotnet build --no-restore
+      - run: dotnet build --no-restore -c Release
 
-      - run: dotnet test --no-build
+      - run: dotnet test --no-build --logger trx
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  docker:
+
+    needs: build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t product-api:latest .
+
+      - name: Login GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Tag image
+        run: docker tag product-api:latest ghcr.io/${{ github.repository }}/product-api:latest
+
+      - name: Push image
+        run: docker push ghcr.io/${{ github.repository }}/product-api:latest
+
+  deploy:
+
+    needs: docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: YOUR_APP_NAME
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          images: ghcr.io/${{ github.repository }}/product-api:latest
