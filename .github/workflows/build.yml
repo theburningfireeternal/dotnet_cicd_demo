@@ -21,7 +21,7 @@ jobs:
 
       - run: dotnet build --no-restore -c Release
 
-      - run: dotnet test --no-build
+      - run: dotnet test --no-build -c Release
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
