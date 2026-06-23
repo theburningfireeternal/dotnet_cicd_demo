@@ -9,6 +9,10 @@ jobs:
   build-test:
 
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +42,10 @@ jobs:
 
     needs: build-test
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -50,6 +58,9 @@ jobs:
 
       - name: Tag image
         run: docker tag product-api:latest ghcr.io/${{ github.repository }}/product-api:latest
+        
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: docker push ghcr.io/${{ github.repository }}/product-api:latest
